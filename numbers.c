@@ -40,6 +40,12 @@ Bool is_even_void(Object num)
   return number % 2 == 0 ? True : False;
 }
 
+Object add_void(Object num1, Object num2)
+{
+  long int sum = (long int)num1 + (long int)num2;
+  return (Object)(sum);
+}
+
 void display_number_array(ArrayVoid_ptr array)
 {
   for (int index = 0; index < array->length; index++)
@@ -83,6 +89,9 @@ int main(void)
 
   printf("\nEven numbers in the list : \n");
   display_number_array(filter_void(array_void, is_even_void));
+
+  printf("\nSum of all numbers : \n");
+  printf("%d\n", (int)reduce_void(array_void, 0, add_void));
 
   return 0;
 }

@@ -40,3 +40,12 @@ ArrayVoid_ptr filter_void(ArrayVoid_ptr src, PredicateVoid predigate)
   }
   return filtered_array;
 }
+
+Object reduce_void(ArrayVoid_ptr src, Object init, ReducerVoid reducer)
+{
+  for (int index = 0; index < src->length; index++)
+  {
+    init = reducer(init, src->array[index]);
+  }
+  return init;
+}
