@@ -19,3 +19,24 @@ ArrayVoid_ptr map_void(ArrayVoid_ptr src, MapperVoid mapper)
   }
   return mapped_array;
 }
+
+ArrayVoid_ptr filter_void(ArrayVoid_ptr src, PredicateVoid predigate)
+{
+  Object temp[src->length];
+  int count = 0;
+  for (int index = 0; index < src->length; index++)
+  {
+    Object current_element = src->array[index];
+    if (predigate(current_element))
+    {
+      temp[count] = current_element;
+      count++;
+    }
+  }
+  ArrayVoid_ptr filtered_array = create_ArrayVoid(count);
+  for (int index = 0; index < count; index++)
+  {
+    filtered_array->array[index] = temp[index];
+  }
+  return filtered_array;
+}
